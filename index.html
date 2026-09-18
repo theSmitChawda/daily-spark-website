@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Spark - Academic Engagement & Code Mastery Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font (Inter & JetBrains Mono) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        spark: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            800: '#1e3a8a',
+                            900: '#172554',
+                            glow: '#3b82f6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom light scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .glow-effect {
+            box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen selection:bg-blue-600 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 backdrop-blur-md bg-white/90 border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-indigo-500 flex items-center justify-center text-white font-black text-xl shadow-md shadow-blue-500/20">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-slate-900">Daily <span class="text-blue-600">Spark</span></span>
+                <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-semibold border border-blue-200">B2B SaaS MVP</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="#problem-solution" class="hover:text-blue-600 transition-colors">The Problem</a>
+                <a href="#demo-video" class="hover:text-blue-600 transition-colors">Video Pitch</a>
+                <a href="#live-mvp" class="hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+                    </span>
+                    Live Interactive App
+                </a>
+                <a href="#pricing" class="hover:text-blue-600 transition-colors">Educator Pricing</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleRoleModal()" class="hidden sm:inline-flex text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+                    <i class="fa-solid fa-arrows-rotate mr-1.5 mt-0.5 text-blue-600"></i> Active Role: <span id="nav-role-label" class="ml-1 text-blue-900 font-bold underline">Student</span>
+                </button>
+                <button onclick="openContactModal()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl text-sm transition-all shadow-md shadow-blue-500/20 hover:scale-[1.02]">
+                    Contact Sales
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 overflow-hidden bg-gradient-to-b from-blue-50/60 via-slate-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-semibold mb-6">
+                    <span class="text-blue-600 font-bold"><i class="fa-solid fa-graduation-cap mr-1"></i> Designed for Higher Ed & CS Educators</span>
+                    <span class="text-blue-300">•</span>
+                    <span>Post-COVID Academic Recovery</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                    Turn Academic Integrity Loss into <span class="bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-600 bg-clip-text text-transparent">Daily Active Mastery</span>
+                </h1>
+                <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                    Students create peer-to-peer coding challenges daily. Classmates solve and compete with automatic real-time ranking by <strong class="text-slate-900">Space & Time Complexity O(N)</strong>. Educators get instant automated grade books.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <!-- <a href="#live-mvp" class="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-extrabold rounded-xl transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play"></i> Try Interactive Live MVP
+                    </a> -->
+                    <a href="#demo-video" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 rounded-xl transition flex items-center justify-center gap-2 font-semibold shadow-sm">
+                        <i class="fa-solid fa-circle-play text-blue-600"></i> Watch 2-Min Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem & Solution Overview -->
+    <section id="problem-solution" class="py-16 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+                <!-- Problem Card -->
+                <div class="bg-rose-50/40 p-8 rounded-2xl border border-rose-200/80 relative overflow-hidden flex flex-col justify-between shadow-sm">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 border border-rose-200 flex items-center justify-center text-rose-600 mb-6 text-xl">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">The Challenge: Post-COVID Academic Decline</h2>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Since remote learning during the pandemic, computer science and STEM departments have faced unprecedented loss of academic integrity and student passive disengagement.
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-xmark text-rose-500 mt-1"></i>
+                                <span>Rampant copy-pasting from generic online answer repositories.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-xmark text-rose-500 mt-1"></i>
+                                <span>Students lack deep algorithmic intuition and execution optimization skills.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-xmark text-rose-500 mt-1"></i>
+                                <span>Professors are overwhelmed grading hundreds of uninspired homework submissions.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-rose-200/60 text-xs text-rose-700 font-semibold">
+                        Impact: 68% of professors report declining foundational knowledge in upper-level courses.
+                    </div>
+                </div>
+
+                <!-- Solution Card -->
+                <div class="bg-blue-50/40 p-8 rounded-2xl border border-blue-200/80 relative overflow-hidden flex flex-col justify-between shadow-sm">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-600 mb-6 text-xl">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">The Solution: Daily Peer-Sparked Mastery</h2>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            <strong>Daily Spark</strong> turns course engagement into a daily peer-driven challenge ecosystem modeled like StackOverflow, restricted exclusively to your university course program.
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-blue-600 mt-1"></i>
+                                <span><strong>Daily Student Prompt Generation:</strong> Students author algorithmic challenges for their peers.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-blue-600 mt-1"></i>
+                                <span><strong>Real-time Complexity Benchmark:</strong> Code is benchmarked automatically by Space $O(1)$ and Time $O(N)$ efficiency.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-blue-600 mt-1"></i>
+                                <span><strong>Automated Grade Assignment:</strong> Professors review ranked submissions and assign grades with one click.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-blue-200/60 text-xs text-blue-800 font-semibold">
+                        Result: 4.2x increase in peer-assisted problem solving & 100% real-time integrity verification.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demonstration Section -->
+    <section id="demo-video" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-8">
+            <h2 class="text-3xl font-extrabold text-slate-900">Watch How Daily Spark Works</h2>
+            <p class="text-slate-600 text-sm mt-2">Short pitch video recorded by our team explaining the classroom workflow.</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xl relative">
+            <div class="bg-slate-100 px-4 py-3 text-xs text-slate-700 flex justify-between items-center border-b border-slate-200">
+                <span class="font-semibold"><i class="fa-solid fa-circle-play text-blue-600 mr-1.5"></i> Classmates Pitch Video</span>
+                <span class="font-mono text-blue-700 font-medium">Google Drive Embed Connected</span>
+            </div>
+
+            <div class="aspect-video w-full bg-slate-900 relative">
+                <iframe 
+                    src="https://drive.google.com/file/d/1ecxBgeo3BmqHlFpKl8wdDpghsHqy-3jA/preview" 
+                    class="w-full h-full border-0 rounded-b-2xl" 
+                    allow="autoplay; fullscreen"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE MVP INTERACTIVE PLAYGROUND -->
+    <section id="live-mvp" class="py-16 bg-slate-100/70 border-t border-slate-200 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="inline-block w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <h2 class="text-2xl font-bold text-slate-900">Live MVP Playground</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm mt-1">Test the full functional prototype as either a <strong>Student</strong> or an <strong>Educator</strong>.</p>
+                </div>
+
+                <div class="flex items-center bg-slate-100 p-1.5 rounded-xl border border-slate-200 self-start md:self-auto">
+                    <button id="btn-role-student" onclick="setRole('student')" class="px-4 py-2 rounded-lg text-sm font-bold transition-all bg-blue-600 text-white shadow-sm">
+                        <i class="fa-solid fa-user-graduate mr-1.5"></i> Student View
+                    </button>
+                    <button id="btn-role-teacher" onclick="setRole('teacher')" class="px-4 py-2 rounded-lg text-sm font-bold transition-all text-slate-600 hover:text-slate-900">
+                        <i class="fa-solid fa-chalkboard-user mr-1.5"></i> Educator Dashboard
+                    </button>
+                </div>
+            </div>
+
+            <!-- STUDENT VIEW CONTENT -->
+            <div id="view-student" class="space-y-8">
+                <div class="grid lg:grid-cols-3 gap-8">
+                    
+                    <div class="lg:col-span-2 space-y-6">
+                        
+                        <!-- Accordion: Post a New Question -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                            <div class="p-4 sm:p-6 bg-slate-50/80 border-b border-slate-200 flex justify-between items-center cursor-pointer" onclick="togglePostQuestionForm()">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base font-bold text-slate-900">Post Today's Challenge Prompt</h3>
+                                        <p class="text-xs text-slate-500">Students create problems for the class to solve today</p>
+                                    </div>
+                                </div>
+                                <i id="post-form-chevron" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                            </div>
+
+                            <form id="form-post-question" onsubmit="handleQuestionSubmit(event)" class="p-6 space-y-4 hidden bg-white">
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 mb-1">Student Author Name</label>
+                                        <input type="text" id="q-author" required placeholder="e.g. Alex Chen" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 mb-1">Target Complexity Goal</label>
+                                        <select id="q-target-complexity" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white">
+                                            <option value="O(N)">Time: O(N) | Space: O(1)</option>
+                                            <option value="O(N log N)">Time: O(N log N) | Space: O(N)</option>
+                                            <option value="O(1)">Time: O(1) | Space: O(1)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Question Title</label>
+                                    <input type="text" id="q-title" required placeholder="e.g., Reverse an array without extra memory" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Problem Description & Constraints</label>
+                                    <textarea id="q-desc" rows="3" required placeholder="Describe constraints, input formats, and target outcome..." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white"></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-sm transition shadow-md shadow-blue-500/20">
+                                    <i class="fa-solid fa-paper-plane mr-1"></i> Publish Question to Course Feed
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Active Daily Question Box -->
+                        <div class="bg-white rounded-2xl border border-slate-200 p-6 relative shadow-sm">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200">
+                                    Today's Active Prompt #104
+                                </span>
+                                <span class="text-xs text-slate-500" id="active-q-author">Posted by: <strong class="text-slate-800">Marcus Vance (CS201)</strong></span>
+                            </div>
+                            <h3 id="active-q-title" class="text-xl font-bold text-slate-900 mb-2">Optimize Two-Sum Algorithm with Minimal Memory</h3>
+                            <p id="active-q-desc" class="text-slate-600 text-sm mb-4 leading-relaxed">
+                                Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>. Aim for time complexity faster than $O(N^2)$ and minimal space overhead!
+                            </p>
+
+                            <!-- Code Editor -->
+                            <div class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden font-mono shadow-inner">
+                                <div class="bg-slate-800/90 px-4 py-2 border-b border-slate-700 flex justify-between items-center text-xs text-slate-300">
+                                    <span class="flex items-center gap-2"><i class="fa-solid fa-code text-blue-400"></i> solution.py</span>
+                                    <span>Python 3.10</span>
+                                </div>
+                                <textarea id="student-code-input" rows="8" class="w-full bg-slate-900 p-4 text-xs sm:text-sm text-sky-300 focus:outline-none leading-relaxed resize-none" spellcheck="false">def two_sum(nums, target):
+    # Daily Spark Auto-Complexity Evaluator
+    seen = {}
+    for i, num in enumerate(nums):
+        diff = target - num
+        if diff in seen:
+            return [seen[diff], i]
+        seen[num] = i
+    return []</textarea>
+                            </div>
+
+                            <div class="mt-4 flex flex-wrap items-center justify-between gap-4">
+                                <div class="text-xs text-slate-500">
+                                    <i class="fa-solid fa-shield-halved text-emerald-600 mr-1"></i> Continuous Academic Integrity Check Active
+                                </div>
+                                <button onclick="evaluateAndSubmitSolution()" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-sm transition shadow-md shadow-blue-500/20 flex items-center gap-2">
+                                    <i class="fa-solid fa-bolt"></i> Evaluate & Submit Solution
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Col: Real-time Leaderboard -->
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                                    <i class="fa-solid fa-trophy text-amber-500"></i> Course Leaderboard
+                                </h3>
+                                <span class="text-xs bg-slate-100 text-slate-700 font-semibold px-2.5 py-1 rounded-md border border-slate-200">CS-201 Section A</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-4">Rankings update live based on <strong>Time Complexity</strong>, <strong>Space Complexity</strong>, and execution speed.</p>
+
+                            <div class="space-y-3" id="leaderboard-list">
+                                <!-- Dynamic leaderboard content -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TEACHER / EDUCATOR DASHBOARD VIEW CONTENT -->
+            <div id="view-teacher" class="hidden space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-chalkboard-user text-blue-600"></i> Educator Grade Management Panel
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-1">Review student submissions, automated space/time complexity metrics, and commit final grades.</p>
+                        </div>
+                        <button onclick="commitAllGrades()" class="px-4 py-2 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl text-xs font-bold hover:bg-emerald-100 transition flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-file-export"></i> Commit All Grades to LMS
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-700">
+                            <thead class="text-xs text-slate-600 uppercase bg-slate-50 border-b border-slate-200">
+                                <tr>
+                                    <th class="py-3 px-4">Student</th>
+                                    <th class="py-3 px-4">Time Complexity</th>
+                                    <th class="py-3 px-4">Space Complexity</th>
+                                    <th class="py-3 px-4">Execution Speed</th>
+                                    <th class="py-3 px-4">Automated Score</th>
+                                    <th class="py-3 px-4">Assigned Grade</th>
+                                    <th class="py-3 px-4">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teacher-table-body" class="divide-y divide-slate-200 font-mono text-xs">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Educator Pricing & B2B Section -->
+    <section id="pricing" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <h2 class="text-3xl font-extrabold text-slate-900">Institutional & B2B License Plans</h2>
+            <p class="text-slate-600 text-sm mt-2">Empower department-wide engagement with automated integrity & daily peer problem sets.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Single Course Pilot -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 flex flex-col justify-between shadow-sm">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900">Single Course Pilot</h3>
+                    <div class="text-3xl font-extrabold text-slate-900 my-3">$199 <span class="text-xs font-normal text-slate-500">/ semester</span></div>
+                    <p class="text-xs text-slate-500 mb-6">Perfect for individual professors testing the 60-minute MVP model in one class.</p>
+                    <ul class="space-y-3 text-xs text-slate-700 mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Up to 60 Students</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Space & Time Complexity Evaluator</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Basic Grade Export</li>
+                    </ul>
+                </div>
+                <button onclick="openContactModal('Single Course Pilot')" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold transition">Select Pilot</button>
+            </div>
+
+            <!-- Department Tier -->
+            <div class="bg-white rounded-2xl p-6 border-2 border-blue-600 relative flex flex-col justify-between glow-effect">
+                <span class="absolute -top-3 right-6 bg-blue-600 text-white font-bold text-[10px] uppercase px-3 py-0.5 rounded-full shadow-sm">Most Popular</span>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900">Department License</h3>
+                    <div class="text-3xl font-extrabold text-slate-900 my-3">$1,250 <span class="text-xs font-normal text-slate-500">/ year</span></div>
+                    <p class="text-xs text-slate-500 mb-6">Designed for STEM and Computer Science departments looking to raise integrity standards.</p>
+                    <ul class="space-y-3 text-xs text-slate-700 mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Unlimited Students & Courses</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Full LMS Integration (Canvas / Blackboard)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Real-time Algorithmic Leaderboards</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Priority Educator Support</li>
+                    </ul>
+                </div>
+                <button onclick="openContactModal('Department License')" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-extrabold transition shadow-md shadow-blue-500/20">Request Department Trial</button>
+            </div>
+
+            <!-- University Campus Wide -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 flex flex-col justify-between shadow-sm">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900">University Campus Wide</h3>
+                    <div class="text-3xl font-extrabold text-slate-900 my-3">Custom <span class="text-xs font-normal text-slate-500">/ institution</span></div>
+                    <p class="text-xs text-slate-500 mb-6">For Dean’s offices looking to systematically cure academic decline across disciplines.</p>
+                    <ul class="space-y-3 text-xs text-slate-700 mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Custom On-Premise Deployment</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Dedicated Pedagogy Consultant</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Custom Security Compliance</li>
+                    </ul>
+                </div>
+                <button onclick="openContactModal('Campus Wide Enterprise')" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold transition">Contact Institutional Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- B2B SALES CONTACT MODAL -->
+    <div id="contact-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-envelope-open-text text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900">Contact Daily Spark Sales</h3>
+                    <p class="text-xs text-slate-500">Validate demand or request an educator demo license</p>
+                </div>
+            </div>
+
+            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Select Interested Plan</label>
+                    <input type="text" id="contact-plan-input" class="w-full bg-slate-100 border border-slate-200 rounded-lg px-3 py-2 text-sm text-blue-700 font-bold focus:outline-none" readonly value="Department License">
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Your Full Name</label>
+                        <input type="text" required placeholder="Dr. Jane Smith" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">University Email (.edu)</label>
+                        <input type="email" required placeholder="jsmith@university.edu" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-600">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Institution / Department</label>
+                    <input type="text" required placeholder="e.g. Stanford CS Department" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Message / Key Requirements</label>
+                    <textarea rows="3" placeholder="Tell us how many students or courses you wish to test with Daily Spark..." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-600"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-blue-500/20">
+                    Submit Demo Request & Validate Demand
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-white border-t border-slate-200 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Daily Spark Startup Team. Created for the 60-Minute MVP Challenge.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        let submissions = [
+            { id: 1, name: 'The Guy', timeComp: 'O(N)', spaceComp: 'O(1)', speed: '12ms', score: 98, grade: 'A+' },
+            { id: 2, name: 'Another Guy', timeComp: 'O(N)', spaceComp: 'O(N)', speed: '18ms', score: 92, grade: 'A' },
+            { id: 3, name: 'Def NOT that Guy', timeComp: 'O(N log N)', spaceComp: 'O(N)', speed: '45ms', score: 81, grade: 'B+' },
+            { id: 4, name: 'Who\'s this?', timeComp: 'O(N^2)', spaceComp: 'O(1)', speed: '110ms', score: 68, grade: 'C' }
+        ];
+
+        let activeRole = 'student';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLeaderboard();
+            renderTeacherTable();
+        });
+
+        function setRole(role) {
+            activeRole = role;
+            const btnStudent = document.getElementById('btn-role-student');
+            const btnTeacher = document.getElementById('btn-role-teacher');
+            const viewStudent = document.getElementById('view-student');
+            const viewTeacher = document.getElementById('view-teacher');
+            const navRoleLabel = document.getElementById('nav-role-label');
+
+            if (role === 'student') {
+                btnStudent.className = 'px-4 py-2 rounded-lg text-sm font-bold transition-all bg-blue-600 text-white shadow-sm';
+                btnTeacher.className = 'px-4 py-2 rounded-lg text-sm font-bold transition-all text-slate-600 hover:text-slate-900';
+                viewStudent.classList.remove('hidden');
+                viewTeacher.classList.add('hidden');
+                navRoleLabel.textContent = 'Student';
+            } else {
+                btnTeacher.className = 'px-4 py-2 rounded-lg text-sm font-bold transition-all bg-blue-600 text-white shadow-sm';
+                btnStudent.className = 'px-4 py-2 rounded-lg text-sm font-bold transition-all text-slate-600 hover:text-slate-900';
+                viewTeacher.classList.remove('hidden');
+                viewStudent.classList.add('hidden');
+                navRoleLabel.textContent = 'Educator';
+            }
+        }
+
+        function toggleRoleModal() {
+            setRole(activeRole === 'student' ? 'teacher' : 'student');
+        }
+
+        function togglePostQuestionForm() {
+            const form = document.getElementById('form-post-question');
+            const chevron = document.getElementById('post-form-chevron');
+            form.classList.toggle('hidden');
+            chevron.classList.toggle('rotate-180');
+        }
+
+        function handleQuestionSubmit(e) {
+            e.preventDefault();
+            const author = document.getElementById('q-author').value;
+            const title = document.getElementById('q-title').value;
+            const desc = document.getElementById('q-desc').value;
+
+            document.getElementById('active-q-author').innerHTML = `Posted by: <strong class="text-slate-800">${author}</strong>`;
+            document.getElementById('active-q-title').textContent = title;
+            document.getElementById('active-q-desc').textContent = desc;
+
+            alert('🔥 New Question Published to the Class Feed!');
+            togglePostQuestionForm();
+            document.getElementById('form-post-question').reset();
+        }
+
+        function evaluateAndSubmitSolution() {
+            const code = document.getElementById('student-code-input').value;
+            let timeComp = 'O(N)';
+            let spaceComp = 'O(1)';
+            let speed = Math.floor(Math.random() * 15 + 8) + 'ms';
+            let score = 95;
+
+            if (code.includes('for') && code.includes('enumerate') && code.includes('seen')) {
+                timeComp = 'O(N)';
+                spaceComp = 'O(N)';
+                score = 96;
+            } else if ((code.match(/for/g) || []).length >= 2) {
+                timeComp = 'O(N^2)';
+                spaceComp = 'O(1)';
+                score = 70;
+            } else if (code.includes('sort')) {
+                timeComp = 'O(N log N)';
+                spaceComp = 'O(N)';
+                score = 85;
+            }
+
+            const newSubmission = {
+                id: Date.now(),
+                name: 'You (Current Student)',
+                timeComp: timeComp,
+                spaceComp: spaceComp,
+                speed: speed,
+                score: score,
+                grade: score >= 90 ? 'A+' : (score >= 80 ? 'B+' : 'C')
+            };
+
+            submissions.unshift(newSubmission);
+            renderLeaderboard();
+            renderTeacherTable();
+
+            alert(`✅ Code Evaluated & Ranked!\n\nAutomated Complexity Results:\n• Time Complexity: ${timeComp}\n• Space Complexity: ${spaceComp}\n• Score: ${score}/100`);
+        }
+
+        function renderLeaderboard() {
+            const list = document.getElementById('leaderboard-list');
+            list.innerHTML = '';
+            const sorted = [...submissions].sort((a, b) => b.score - a.score);
+
+            sorted.forEach((sub, index) => {
+                const badgeColor = index === 0 ? 'bg-amber-400 text-slate-900 font-extrabold' : (index === 1 ? 'bg-slate-300 text-slate-900' : 'bg-amber-700 text-white');
+                const rankText = index + 1;
+
+                list.innerHTML += `
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-6 h-6 rounded-full ${badgeColor} flex items-center justify-center font-bold text-[11px]">
+                                ${rankText}
+                            </span>
+                            <div>
+                                <div class="font-bold text-slate-900">${sub.name}</div>
+                                <div class="text-[10px] text-slate-500 font-mono">Time: <span class="text-blue-600 font-semibold">${sub.timeComp}</span> | Space: ${sub.spaceComp}</div>
+                            </div>
+                        </div>
+                        <div class="text-right font-mono">
+                            <div class="text-blue-600 font-bold">${sub.score} pts</div>
+                            <div class="text-[10px] text-slate-400">${sub.speed}</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderTeacherTable() {
+            const tbody = document.getElementById('teacher-table-body');
+            tbody.innerHTML = '';
+
+            submissions.forEach((sub) => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-3 px-4 font-sans font-semibold text-slate-900">${sub.name}</td>
+                        <td class="py-3 px-4 text-blue-600 font-semibold">${sub.timeComp}</td>
+                        <td class="py-3 px-4 text-indigo-600">${sub.spaceComp}</td>
+                        <td class="py-3 px-4 text-slate-500">${sub.speed}</td>
+                        <td class="py-3 px-4 font-bold text-emerald-600">${sub.score}/100</td>
+                        <td class="py-3 px-4">
+                            <input type="text" value="${sub.grade}" onchange="updateGrade(${sub.id}, this.value)" class="w-12 bg-slate-50 border border-slate-300 rounded px-1.5 py-1 text-center font-bold text-slate-900 focus:border-blue-600">
+                        </td>
+                        <td class="py-3 px-4">
+                            <button onclick="overrideGrade(${sub.id})" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-pen-to-square"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function updateGrade(id, val) {
+            const item = submissions.find(s => s.id === id);
+            if (item) item.grade = val;
+        }
+
+        function overrideGrade(id) {
+            const newGrade = prompt('Enter new grade for student:');
+            if (newGrade) {
+                updateGrade(id, newGrade);
+                renderTeacherTable();
+            }
+        }
+
+        function commitAllGrades() {
+            alert('🚀 Grades successfully exported and synced to LMS Gradebook!');
+        }
+
+        function openContactModal(planName = 'Department License') {
+            document.getElementById('contact-plan-input').value = planName;
+            document.getElementById('contact-modal').classList.remove('hidden');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contact-modal').classList.add('hidden');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('🎉 Thank you! Your B2B demo request has been received. Our sales team will reach out within 24 hours.');
+            closeContactModal();
+        }
+    </script>
+</body>
+</html>
